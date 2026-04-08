@@ -1,0 +1,1097 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SAADS 2026 | Campus Bagé - IFSul</title>
+  <style>
+    :root {
+      --bg: #193b59;
+      --bg-soft: #244a6d;
+      --card: rgba(252, 210, 119, 0.08);
+      --card-strong: rgba(252, 210, 119, 0.14);
+      --text: #f8e4b0;
+      --muted: #f1d58a;
+      --primary: #fcd277;
+      --secondary: #193b59;
+      --accent: #732d14;
+      --border: rgba(252, 210, 119, 0.24);
+      --shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+      --radius: 24px;
+      --radius-sm: 18px;
+      --max: 1180px;
+      --header-h: 84px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(252, 210, 119, 0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(115, 45, 20, 0.22), transparent 30%),
+        linear-gradient(180deg, #193b59 0%, #244a6d 50%, #193b59 100%);
+      color: var(--text);
+    }
+
+    body {
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      backdrop-filter: blur(20px);
+      background: rgba(25, 59, 89, 0.82);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .site-header .container {
+      min-height: var(--header-h);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-badge {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      /*background: linear-gradient(135deg, var(--primary), #e7bd63);*/
+      display: grid;
+      place-items: center;
+      color: var(--secondary);
+      font-size: 1rem;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+
+    .brand-text small {
+      display: block;
+      color: var(--muted);
+      font-size: 0.74rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-text strong {
+      display: block;
+      font-size: 1rem;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 999px;
+      transition: 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text);
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    section {
+      scroll-margin-top: calc(var(--header-h) + 18px);
+      padding: 72px 0;
+    }
+
+    .hero {
+      min-height: calc(100vh - var(--header-h));
+      display: flex;
+      align-items: center;
+      padding: 56px 0 72px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .hero h1 {
+      margin: 18px 0 18px;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+    }
+
+    .hero p {
+      margin: 0 0 28px;
+      max-width: 60ch;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 14px 20px;
+      border-radius: 999px;
+      font-weight: 800;
+      border: 1px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), #e7bd63);
+      color: var(--secondary);
+      box-shadow: 0 14px 34px rgba(252, 210, 119, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: var(--border);
+      color: var(--text);
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .hero-meta span {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border);
+    }
+
+    .hero-card,
+    .section-card,
+    .schedule-wrap,
+    .faq-item,
+    .member-card,
+    .inscricao-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .hero-card {
+      padding: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      inset: -40% auto auto -20%;
+      width: 320px;
+      height: 320px;
+      background: radial-gradient(circle, rgba(252, 210, 119, 0.2), transparent 60%);
+      pointer-events: none;
+    }
+
+    .logo-panel {
+      display: grid;
+      place-items: center;
+      border-radius: 22px;
+      background: rgba(25, 59, 89, 0.28);
+      border: 1px solid rgba(252, 210, 119, 0.18);
+      padding: 30px;
+      margin-bottom: 22px;
+      min-height: 250px;
+    }
+
+    .logo-svg {
+      width: min(100%, 360px);
+      height: auto;
+    }
+
+    .countdown-title {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+
+    .time-box {
+      padding: 18px 10px;
+      text-align: center;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .time-box strong {
+      display: block;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .time-box span {
+      color: var(--muted);
+      font-size: 0.86rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-size: clamp(1.9rem, 3vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    .section-heading p {
+      margin: 0;
+      color: var(--muted);
+      max-width: 62ch;
+    }
+
+    .section-card {
+      padding: 30px;
+    }
+
+    .programacao-grid {
+      display: grid;
+      gap: 20px;
+    }
+
+    .schedule-wrap {
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      text-align: left;
+      padding: 18px 20px;
+      background: rgba(255, 255, 255, 0.08);
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    tbody td {
+      padding: 18px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      vertical-align: top;
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      background: rgba(115, 45, 20, 0.18);
+      color: var(--primary);
+      border: 1px solid rgba(252, 210, 119, 0.18);
+    }
+
+    .inscricao-box {
+      padding: 32px;
+      display: grid;
+      grid-template-columns: 1.1fr auto;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .inscricao-box strong {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .inscricao-box p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .faq-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .faq-item {
+      overflow: hidden;
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: transparent;
+      color: var(--text);
+      border: 0;
+      padding: 22px 24px;
+      font: inherit;
+      text-align: left;
+      cursor: pointer;
+      font-weight: 800;
+    }
+
+    .faq-question span:last-child {
+      color: var(--accent);
+      font-size: 1.4rem;
+      line-height: 1;
+      transition: transform 0.2s ease;
+    }
+
+    .faq-item.open .faq-question span:last-child {
+      transform: rotate(45deg);
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.28s ease;
+    }
+
+    .faq-answer p {
+      margin: 0;
+      color: var(--muted);
+      padding: 0 24px 22px;
+    }
+
+    .faq-answer a {
+      text-decoration: underline;
+    }
+
+    .comissao-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .member-card {
+      padding: 20px;
+    }
+
+    .member-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 22px;
+      display: grid;
+      place-items: center;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: white;
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, var(--primary), #e7bd63);
+      overflow: hidden;
+    }
+
+    .member-card:nth-child(2) .member-photo {
+      background: linear-gradient(135deg, #e7bd63, var(--accent));
+    }
+
+    .member-card:nth-child(3) .member-photo {
+      background: linear-gradient(135deg, var(--accent), #a54b27);
+    }
+
+    .member-card:nth-child(4) .member-photo {
+      background: linear-gradient(135deg, #d6ae58, var(--secondary));
+    }
+
+    .member-card h3 {
+      margin: 0 0 6px;
+      font-size: 1.1rem;
+    }
+
+    .member-card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.97rem;
+    }
+
+    .footer {
+      padding: 28px 0 60px;
+      color: var(--muted);
+    }
+
+    .footer .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 24px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .inscricao-box,
+      .comissao-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .comissao-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 760px) {
+      :root {
+        --header-h: 74px;
+      }
+
+      .site-header .container {
+        position: relative;
+      }
+
+      .nav-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 16px;
+        left: 16px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px;
+        border-radius: 22px;
+        background: rgba(8, 17, 31, 0.96);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 12px 14px;
+      }
+
+      .countdown {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .section-card,
+      .hero-card,
+      .inscricao-box {
+        padding: 22px;
+      }
+
+      thead {
+        display: none;
+      }
+
+      table,
+      tbody,
+      tr,
+      td {
+        display: block;
+        width: 100%;
+      }
+
+      tbody td {
+        border-top: 0;
+        padding: 8px 18px;
+      }
+
+      tbody tr {
+        padding: 14px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      tbody tr:first-child {
+        border-top: 0;
+      }
+
+      tbody td::before {
+        content: attr(data-label);
+        display: block;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-bottom: 4px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .comissao-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        font-size: 2.35rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="brand" href="#inicio" aria-label="Ir para o início">
+        <div class="brand-badge"><img src="logo.svg" alt="Logo" style="object-fit:contain"/></div>
+        <div class="brand-text">
+          <small>Semana Acadêmica</small>
+          <strong>SAADS 2026</strong>
+        </div>
+      </a>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu">☰</button>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#inicio">Início</a>
+        <a href="#evento">Evento</a>
+        <a href="#programacao">Programação</a>
+        <a href="#inscricoes">Inscrições</a>
+        <a href="#faq">FAQ</a>
+        <a href="#comissao">Comissão</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="reveal visible">
+          <div class="eyebrow">Campus Bagé - IFSul • 6, 7 e 8 de maio de 2026</div>
+          <h1>Semana Acadêmica de Tecnologia em Análise e Desenvolvimento de Sistemas</h1>
+          <p>Um encontro para conectar estudantes, docentes, profissionais e comunidade em torno de ideias, práticas e experiências que movem a tecnologia.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#inscricoes">Quero me inscrever</a>
+            <a class="btn btn-secondary" href="#programacao">Ver programação</a>
+          </div>
+          <div class="hero-meta">
+            <span>Auditório e laboratórios do campus</span>
+            <span>Atividades gratuitas</span>
+            <span>Noite de integração acadêmica</span>
+          </div>
+        </div>
+
+        <div class="hero-card reveal">
+          <div class="logo-panel" aria-label="Logo do evento">
+            <img src="logo.svg" alt="Logo ADS Semana Acadêmica" class="logo-svg" />
+          </div>
+
+          <p class="countdown-title">Contagem regressiva para o início do evento</p>
+          <div class="countdown" id="countdown">
+            <div class="time-box"><strong id="days">00</strong><span>Dias</span></div>
+            <div class="time-box"><strong id="hours">00</strong><span>Horas</span></div>
+            <div class="time-box"><strong id="minutes">00</strong><span>Minutos</span></div>
+            <div class="time-box"><strong id="seconds">00</strong><span>Segundos</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="evento">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">O evento</div>
+            <h2>Motivação para organizar, aprender e participar</h2>
+          </div>
+          <p>A SAADS nasce como um espaço de encontro entre formação acadêmica, prática profissional e protagonismo estudantil, fortalecendo os vínculos entre o curso, o campus e a comunidade.</p>
+        </div>
+
+        <div class="section-card reveal">
+          <p>A Semana Acadêmica do Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas do Campus Bagé do IFSul (SAADS) foi pensada para ampliar o diálogo sobre tecnologia, software, inovação e carreira, reunindo diferentes perspectivas em uma programação acessível e inspiradora. Ao organizar o evento, a comissão busca criar oportunidades de troca entre estudantes, docentes, egressos, profissionais e público externo, incentivando a circulação de ideias e o compartilhamento de experiências que complementam a formação em sala de aula.</p>
+          <p>Participar da SAADS é uma forma de aprofundar conhecimentos, descobrir novas possibilidades de atuação e entrar em contato com temas atuais da área de tecnologia. Ao longo de três dias, palestras, minicursos e momentos de integração irão promover aprendizado prático, reflexão crítica e aproximação com o cenário profissional, valorizando a construção coletiva do conhecimento e o papel ativo dos estudantes em sua trajetória acadêmica.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="programacao">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">Programação</div>
+            <h2>Três dias de conteúdo, prática e integração</h2>
+          </div>
+          <p>Uma programação organizada para combinar abertura institucional, palestras, minicursos e encerramento em um fluxo simples e fácil de acompanhar.</p>
+        </div>
+
+        <div class="schedule-wrap reveal">
+          <table>
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Horário</th>
+                <th>Atividade</th>
+                <th>Formato</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td data-label="Data">06/05/2026</td>
+                <td data-label="Horário">19h15</td>
+                <td data-label="Atividade">Abertura Oficial da SAADS 2026</td>
+                <td data-label="Formato"><span class="badge">Abertura</span></td>
+              </tr>
+              <tr>
+                <td data-label="Data">06/05/2026</td>
+                <td data-label="Horário">19h30</td>
+                <td data-label="Atividade">"O que o mercado espera dos novos desenvolvedores de sistemas?" com Fernando Fagonde</td>
+                <td data-label="Formato"><span class="badge">Palestra</span></td>
+              </tr>
+              <tr>
+                <td data-label="Data">06/05/2026</td>
+                <td data-label="Horário">20h50</td>
+                <td data-label="Atividade">Palestra 2</td>
+                <td data-label="Formato"><span class="badge">Palestra</span></td>
+              </tr>
+              <tr>
+                <td data-label="Data">07/05/2026</td>
+                <td data-label="Horário">19h15</td>
+                <td data-label="Atividade">JavaScript, com Edimar Camacho</td>
+                <td data-label="Formato"><span class="badge">Minicurso</span></td>
+              </tr>
+              <tr>
+                <td data-label="Data">07/05/2026</td>
+                <td data-label="Horário">19h15</td>
+                <td data-label="Atividade">Minicurso 2</td>
+                <td data-label="Formato"><span class="badge">Minicurso</span></td>
+              </tr>
+              <tr>
+                <td data-label="Data">07/05/2026</td>
+                <td data-label="Horário">19h15</td>
+                <td data-label="Atividade">Minicurso 3</td>
+                <td data-label="Formato"><span class="badge">Minicurso</span></td>
+              </tr>
+              <tr>
+                <td data-label="Data">07/05/2026</td>
+                <td data-label="Horário">19h15</td>
+                <td data-label="Atividade">Minicurso 4</td>
+                <td data-label="Formato"><span class="badge">Minicurso</span></td>
+              </tr>
+              <tr>
+                <td data-label="Data">08/05/2026</td>
+                <td data-label="Horário">19h15</td>
+                <td data-label="Atividade">Palestra 3, com Ricardo Robaina</td>
+                <td data-label="Formato"><span class="badge">Palestra</span></td>
+              </tr>
+              <tr>
+                <td data-label="Data">08/05/2026</td>
+                <td data-label="Horário">20h30</td>
+                <td data-label="Atividade">Palestra 4, com Fábio Livi Ramos</td>
+                <td data-label="Formato"><span class="badge">Palestra</span></td>
+              </tr>
+              <tr>
+                <td data-label="Data">08/05/2026</td>
+                <td data-label="Horário">21h30</td>
+                <td data-label="Atividade">Encerramento</td>
+                <td data-label="Formato"><span class="badge">Encerramento</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="inscricoes">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">Inscrições</div>
+            <h2>Participe gratuitamente</h2>
+          </div>
+          <p>As atividades da SAADS 2026 são abertas e gratuitas, incentivando a participação da comunidade acadêmica e do público interessado em tecnologia.</p>
+        </div>
+
+        <div class="inscricao-box reveal">
+          <div>
+            <strong>As inscrições são gratuitas e o evento é totalmente gratuito.</strong>
+            <p>Garanta sua participação por meio do formulário oficial. O botão abaixo pode ser configurado com o link definitivo da página de inscrições.</p>
+          </div>
+          <a class="btn btn-primary" href="https://suap.ifsul.edu.br/eventos/inscricao/1/651/" target="_blank" rel="noopener noreferrer">Acessar inscrições</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">FAQ</div>
+            <h2>Perguntas frequentes</h2>
+          </div>
+          <p>Respostas rápidas para orientar participantes antes e durante a Semana Acadêmica.</p>
+        </div>
+
+        <div class="faq-list">
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>Quem pode participar da SAADS 2026?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>O evento é voltado a estudantes, docentes, egressos, profissionais da área e demais interessados em tecnologias de desenvolvimento de sistemas.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>O evento tem custo de inscrição?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Não. As inscrições são gratuitas e todas as atividades previstas nesta edição também são gratuitas.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>Onde acontecerão as atividades?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>As palestras ocorrerão no auditório do campus, enquanto os minicursos serão realizados nos laboratórios de informática.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>Haverá certificado de participação?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Sim. Você deve se inscrever previamente e realizar o check-in presencialmente junto à organização do evento nos dias em que participar.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>Como faço para cursar o TADS no Campus Bagé do IFSul?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Ofertamos 30 vagas para ingressantes em todos os semestres. O IFSul é uma instituição pública, gratuita e de qualidade!</p>
+              <p>Você pode fazer o vestibular, que geralmente ocorre em torno de 60 dias antes do início do próximo semestre.</p>
+              <p>Veja a documentação do curso nesta <a href="https://intranet.ifsul.edu.br/catalogo/curso/181">página</a>. Ela apresenta nosso projeto pedagógico (PPC), a matriz curricular e conteúdos programáticos das disciplinas, dentre outros documentos importantes.</p>
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button">
+              <span>Se eu tiver outras dúvidas como entro em contato?</span>
+              <span>+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Você pode entrar em contato pelo e-mail <a href="mailto:thalesmaciel@ifsul.edu.br">thalesmaciel@ifsul.edu.br</a>.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section id="comissao">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">Comissão organizadora</div>
+            <h2>Quem está fazendo a SAADS acontecer</h2>
+          </div>
+          <p>Espaço para apresentar os integrantes da comissão com foto, nome e uma breve frase de identificação.</p>
+        </div>
+
+        <div class="comissao-grid">
+
+          <article class="member-card reveal">
+            <div class="member-photo"><img src="img/thales.jpeg"/></div>
+            <h3>Prof. Dr. Thales Maciel</h3>
+            <p>A melhor documentação é aquela que você não precisa explicar depois.</p>
+          </article>
+
+          <article class="member-card reveal">
+            <div class="member-photo"><img src="img/fabiane.jpeg"/></div>
+            <h3>Prof. Me. Fabiane Prates</h3>
+            <p>Se tá difícil de testar, provavelmente tá difícil de manter também.</p>
+          </article>
+
+          <article class="member-card reveal">
+            <div class="member-photo"><img src="img/pablo.jpeg"/></div>
+            <h3>Pablo Barcellos</h3>
+            <p>Programador otimista acha que vai dar certo; experiente já prepara o try/catch.</p>
+          </article>
+
+          <article class="member-card reveal">
+            <div class="member-photo"><img src="img/leonarda.jpeg" /></div>
+            <h3>Leonarda Morales</h3>
+            <p>Funcionar não é suficiente — precisa funcionar de novo amanhã.</p>
+          </article>
+
+          <article class="member-card reveal">
+            <div class="member-photo"><img src="img/lucas.jpeg" /></div>
+            <h3>Prof. Lucas Silva</h3>
+            <p>Se o nome da variável precisa de explicação, o nome tá errado.</p>
+          </article>
+
+          <article class="member-card reveal">
+            <div class="member-photo"><img src="img/kaylane.jpeg" /></div>
+            <h3>Kaylane Santos</h3>
+            <p>Se o nome da variável precisa de explicação, o nome tá errado.</p>
+          </article>
+
+          <article class="member-card reveal">
+            <div class="member-photo"><img src="img/erico.jpeg" /></div>
+            <h3>Érico Amico</h3>
+            <p>Código bom resolve o problema; código ótimo evita novos problemas.</p>
+          </article>
+
+          <article class="member-card reveal">
+            <div class="member-photo"><img src="img/estela.jpeg" /></div>
+            <h3>Estela Loreto</h3>
+            <p>Quando tudo parece quebrado, começa pelo básico — geralmente é algo simples.</p>
+          </article>
+
+          <article class="member-card reveal">
+            <div class="member-photo"><img src="img/vitoria.jpeg" /></div>
+            <h3>Vitória Gonçalves</h3>
+            <p>Primeiro faz funcionar, depois faz direito, depois faz rápido — nessa ordem.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <span>SAADS 2026 • Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas • IFSul Campus Bagé</span>
+      <a href="#inicio">Voltar ao topo</a>
+    </div>
+  </footer>
+
+  <script>
+    const targetDate = new Date('2026-05-06T19:00:00-03:00').getTime()
+    const daysEl = document.getElementById('days')
+    const hoursEl = document.getElementById('hours')
+    const minutesEl = document.getElementById('minutes')
+    const secondsEl = document.getElementById('seconds')
+
+    function updateCountdown() {
+      const now = Date.now()
+      const diff = targetDate - now
+
+      if (diff <= 0) {
+        daysEl.textContent = '00'
+        hoursEl.textContent = '00'
+        minutesEl.textContent = '00'
+        secondsEl.textContent = '00'
+        return
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24)
+      const minutes = Math.floor((diff / (1000 * 60)) % 60)
+      const seconds = Math.floor((diff / 1000) % 60)
+
+      daysEl.textContent = String(days).padStart(2, '0')
+      hoursEl.textContent = String(hours).padStart(2, '0')
+      minutesEl.textContent = String(minutes).padStart(2, '0')
+      secondsEl.textContent = String(seconds).padStart(2, '0')
+    }
+
+    updateCountdown()
+    setInterval(updateCountdown, 1000)
+
+    const faqItems = document.querySelectorAll('.faq-item')
+
+    faqItems.forEach((item) => {
+      const button = item.querySelector('.faq-question')
+      const answer = item.querySelector('.faq-answer')
+
+      if (item.classList.contains('open')) {
+        answer.style.maxHeight = answer.scrollHeight + 'px'
+      }
+
+      button.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open')
+
+        faqItems.forEach((current) => {
+          current.classList.remove('open')
+          current.querySelector('.faq-answer').style.maxHeight = null
+        })
+
+        if (!isOpen) {
+          item.classList.add('open')
+          answer.style.maxHeight = answer.scrollHeight + 'px'
+        }
+      })
+    })
+
+    const sections = document.querySelectorAll('main section')
+    const navLinks = document.querySelectorAll('.nav-links a')
+
+    function setActiveLink() {
+      let currentId = ''
+
+      sections.forEach((section) => {
+        const top = window.scrollY
+        const offset = section.offsetTop - 130
+        const height = section.offsetHeight
+
+        if (top >= offset && top < offset + height) {
+          currentId = section.id
+        }
+      })
+
+      navLinks.forEach((link) => {
+        link.classList.toggle('active', link.getAttribute('href') === '#' + currentId)
+      })
+    }
+
+    setActiveLink()
+    window.addEventListener('scroll', setActiveLink)
+
+    const revealEls = document.querySelectorAll('.reveal')
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible')
+        }
+      })
+    }, { threshold: 0.14 })
+
+    revealEls.forEach((el) => observer.observe(el))
+
+    const navToggle = document.getElementById('navToggle')
+    const navLinksWrap = document.getElementById('navLinks')
+
+    navToggle.addEventListener('click', () => {
+      navLinksWrap.classList.toggle('open')
+    })
+
+    navLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        navLinksWrap.classList.remove('open')
+      })
+    })
+  </script>
+</body>
+</html>
