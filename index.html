@@ -16,6 +16,134 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SAADS 2026 | Campus Bagé - IFSul</title>
   <link href="style.css" rel="stylesheet" />
+
+  <style>
+    .photos-days {
+      display: grid;
+      gap: 28px;
+    }
+
+    .photos-day {
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 24px;
+      padding: 22px;
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.16);
+      overflow: hidden;
+    }
+
+    .photos-day-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .photos-day-header h3 {
+      margin: 0;
+      font-size: 1.2rem;
+    }
+
+    .photos-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .photo-card {
+      border: 0;
+      padding: 0;
+      border-radius: 18px;
+      overflow: hidden;
+      cursor: zoom-in;
+      background: rgba(255, 255, 255, 0.08);
+      aspect-ratio: 4 / 3;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .photo-card:hover img,
+    .photo-card:focus-visible img {
+      transform: scale(1.06);
+      filter: brightness(1.08);
+    }
+
+    .photo-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      background: rgba(0, 0, 0, 0.84);
+    }
+
+    .photo-modal.open {
+      display: flex;
+    }
+
+    .photo-modal figure {
+      margin: 0;
+      max-width: min(1100px, 94vw);
+      max-height: 88vh;
+      text-align: center;
+    }
+
+    .photo-modal img {
+      max-width: 100%;
+      max-height: 78vh;
+      border-radius: 18px;
+      object-fit: contain;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.45);
+    }
+
+    .photo-modal figcaption {
+      margin-top: 12px;
+      color: #fff;
+      font-weight: 600;
+    }
+
+    .photo-modal-close {
+      position: absolute;
+      top: 18px;
+      right: 22px;
+      width: 44px;
+      height: 44px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      font-size: 2rem;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    @media (max-width: 820px) {
+      .photos-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 560px) {
+      .photos-day {
+        padding: 16px;
+      }
+
+      .photos-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
   <header class="site-header">
@@ -35,6 +163,7 @@
         <a href="#evento">Evento</a>
         <a href="#programacao">Programação</a>
         <a href="#inscricoes">Inscrições</a>
+        <a href="#fotos">Fotos</a>
         <a href="#faq">FAQ</a>
         <a href="#comissao">Comissão</a>
       </nav>
@@ -319,6 +448,77 @@
       </div>
     </section>
 
+
+    <section id="fotos">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">Fotos</div>
+            <h2>Registros da SAADS 2026</h2>
+          </div>
+          <p>Confira alguns momentos do evento organizados por dia. Clique em uma foto para ampliar.</p>
+        </div>
+
+        <div class="photos-days reveal">
+          <article class="photos-day dia1">
+            <div class="photos-day-header">
+              <span class="badge">06/05/2026</span>
+              <h3>Dia 1 — Abertura e palestras</h3>
+            </div>
+            <div class="photos-grid">
+              <button class="photo-card" type="button" data-full="img/dia1-1.jpeg" data-caption="SAADS 2026 — Dia 1">
+                <img src="img/dia1-1.jpeg" alt="Foto do primeiro dia da SAADS 2026" loading="lazy">
+              </button>
+              <button class="photo-card" type="button" data-full="img/dia1-2.jpeg" data-caption="SAADS 2026 — Dia 1">
+                <img src="img/dia1-2.jpeg" alt="Foto do primeiro dia da SAADS 2026" loading="lazy">
+              </button>
+              <button class="photo-card" type="button" data-full="img/dia1-3.jpeg" data-caption="SAADS 2026 — Dia 1">
+                <img src="img/dia1-3.jpeg" alt="Foto do primeiro dia da SAADS 2026" loading="lazy">
+              </button>
+            </div>
+          </article>
+
+          <article class="photos-day dia2">
+            <div class="photos-day-header">
+              <span class="badge">07/05/2026</span>
+              <h3>Dia 2 — Minicursos</h3>
+            </div>
+            <div class="photos-grid">
+              <button class="photo-card" type="button" data-full="img/dia2-1.jpeg" data-caption="SAADS 2026 — Dia 2">
+                <img src="img/dia2-1.jpeg" alt="Foto do segundo dia da SAADS 2026" loading="lazy">
+              </button>
+              <button class="photo-card" type="button" data-full="img/dia2-2.jpeg" data-caption="SAADS 2026 — Dia 2">
+                <img src="img/dia2-2.jpeg" alt="Foto do segundo dia da SAADS 2026" loading="lazy">
+              </button>
+              <button class="photo-card" type="button" data-full="img/dia2-3.jpeg" data-caption="SAADS 2026 — Dia 2">
+                <img src="img/dia2-3.jpeg" alt="Foto do segundo dia da SAADS 2026" loading="lazy">
+              </button>
+              <button class="photo-card" type="button" data-full="img/dia2-4.jpeg" data-caption="SAADS 2026 — Dia 2">
+                <img src="img/dia2-4.jpeg" alt="Foto do segundo dia da SAADS 2026" loading="lazy">
+              </button>
+              <button class="photo-card" type="button" data-full="img/dia2-5.jpeg" data-caption="SAADS 2026 — Dia 2">
+                <img src="img/dia2-5.jpeg" alt="Foto do segundo dia da SAADS 2026" loading="lazy">
+              </button>
+              <button class="photo-card" type="button" data-full="img/dia2-6.jpeg" data-caption="SAADS 2026 — Dia 2">
+                <img src="img/dia2-6.jpeg" alt="Foto do segundo dia da SAADS 2026" loading="lazy">
+              </button>
+            </div>
+          </article>
+
+          <article class="photos-day dia3">
+            <div class="photos-day-header">
+              <span class="badge">08/05/2026</span>
+              <h3>Dia 3 — Palestras</h3>
+            </div>
+            <div class="photos-grid">
+              Carregando...
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
     <section id="faq">
       <div class="container">
         <div class="section-heading reveal">
@@ -474,6 +674,15 @@
     </section>
   </main>
 
+
+  <div class="photo-modal" id="photoModal" aria-hidden="true" role="dialog" aria-label="Foto ampliada">
+    <button class="photo-modal-close" id="photoModalClose" type="button" aria-label="Fechar foto ampliada">×</button>
+    <figure>
+      <img id="photoModalImg" src="" alt="Foto ampliada da SAADS 2026">
+      <figcaption id="photoModalCaption"></figcaption>
+    </figure>
+  </div>
+
   <footer class="footer">
     <div class="container">
       <span>SAADS 2026 • Curso Superior de Tecnologia em Análise e Desenvolvimento de Sistemas • IFSul Campus Bagé</span>
@@ -585,6 +794,48 @@
       link.addEventListener('click', () => {
         navLinksWrap.classList.remove('open')
       })
+    })
+
+
+    const photoCards = document.querySelectorAll('.photo-card')
+    const photoModal = document.getElementById('photoModal')
+    const photoModalImg = document.getElementById('photoModalImg')
+    const photoModalCaption = document.getElementById('photoModalCaption')
+    const photoModalClose = document.getElementById('photoModalClose')
+
+    function openPhotoModal(src, caption) {
+      photoModalImg.src = src
+      photoModalCaption.textContent = caption || ''
+      photoModal.classList.add('open')
+      photoModal.setAttribute('aria-hidden', 'false')
+      document.body.style.overflow = 'hidden'
+    }
+
+    function closePhotoModal() {
+      photoModal.classList.remove('open')
+      photoModal.setAttribute('aria-hidden', 'true')
+      photoModalImg.src = ''
+      document.body.style.overflow = ''
+    }
+
+    photoCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        openPhotoModal(card.dataset.full, card.dataset.caption)
+      })
+    })
+
+    photoModalClose.addEventListener('click', closePhotoModal)
+
+    photoModal.addEventListener('click', (event) => {
+      if (event.target === photoModal) {
+        closePhotoModal()
+      }
+    })
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && photoModal.classList.contains('open')) {
+        closePhotoModal()
+      }
     })
   </script>
 </body>
